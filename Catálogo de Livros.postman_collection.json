@@ -1,0 +1,543 @@
+{
+  "info": {
+    "_postman_id": "fe7020eb-e2a6-4893-94c0-430fb81fb307",
+    "name": "Catálogo de Livros",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56822712",
+    "_collection_link": "https://go.postman.co/collection/56822712-fe7020eb-e2a6-4893-94c0-430fb81fb307?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET",
+      "item": [
+        {
+          "name": "Listar livros",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve retonar um array de livros\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"books\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{URL}}books?available=true&limit=20&offset=0&orderBy=title&order=ASC",
+              "host": [
+                "{{URL}}books"
+              ],
+              "query": [
+                {
+                  "key": "available",
+                  "value": "true"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "orderBy",
+                  "value": "title"
+                },
+                {
+                  "key": "order",
+                  "value": "ASC"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar categorias",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve retonar um array de autores\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"categories\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{URL}}books/categories",
+              "host": [
+                "{{URL}}books"
+              ],
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar autores",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve retonar um array de autores\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"authors\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{URL}}books/authors",
+              "host": [
+                "{{URL}}books"
+              ],
+              "path": [
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Pesquisar detalhes de um livro existente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{URL}}books/2",
+              "host": [
+                "{{URL}}books"
+              ],
+              "path": [
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Pesquisar detalhes de um livro inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve retonar uma mensagem de erro\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Livro não encontrado.\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{URL}}books/999",
+              "host": [
+                "{{URL}}books"
+              ],
+              "path": [
+                "999"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "POST",
+      "item": [
+        {
+          "name": "Cadastrar novo livro (requer ADM)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve retonar uma mensagem de confirmação\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Livro criado com sucesso.\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"{{$randomFullName}}\",\n  \"author\": \"José de Alencar\",\n  \"category\": \"Literatura Brasileira\",\n  \"total_copies\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}books",
+              "host": [
+                "{{URL}}books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cadastrar novo livro existente (requer ADM)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve retonar uma mensagem de confirmação\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Já existe um livro com este título e autor.\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"O Cortiço\",\n  \"author\": \"Aluísio Azevedo\",\n  \"description\": \"Romance naturalista que retrata a vida em um cortiço\",\n  \"category\": \"Literatura Brasileira\",\n  \"isbn\": \"978-85-260-1320-6\",\n  \"editor\": \"Editora Ática\",\n  \"language\": \"Português\",\n  \"publication_year\": 1890,\n  \"pages\": 312,\n  \"format\": \"Físico\",\n  \"total_copies\": 4,\n  \"available_copies\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/books",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "books"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PUT",
+      "item": [
+        {
+          "name": "Atualizar livro (requer ADM)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve retonar uma mensagem de confirmação\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Livro atualizado com sucesso.\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "accept",
+                "value": "*/*"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Nome livro atualizado\",\n  \"author\": \"Autor Atualizado\",\n  \"description\": \"Descrição atualizada do livro\",\n  \"category\": \"Categoria atualizada\",\n  \"editor\": \"Editora Atualizada\",\n  \"language\": \"Português\",\n  \"publication_year\": 2000,\n  \"pages\": 300,\n  \"format\": \"Físico\",\n  \"total_copies\": 10,\n  \"available_copies\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}books/1",
+              "host": [
+                "{{URL}}books"
+              ],
+              "path": [
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar livro inexistente (requer ADM)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Deve retonar uma mensagem de erro\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Livro não encontrado.\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "accept",
+                "value": "*/*"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Nome livro atualizado\",\n  \"author\": \"Autor Atualizado\",\n  \"description\": \"Descrição atualizada do livro\",\n  \"category\": \"Categoria atualizada\",\n  \"editor\": \"Editora Atualizada\",\n  \"language\": \"Português\",\n  \"publication_year\": 2000,\n  \"pages\": 300,\n  \"format\": \"Físico\",\n  \"total_copies\": 10,\n  \"available_copies\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{URL}}books/999",
+              "host": [
+                "{{URL}}books"
+              ],
+              "path": [
+                "999"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "DELETE",
+      "item": [
+        {
+          "name": "Excluir livro (requer ADM)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Deve rotornar o status code: 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/books/22",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "books",
+                "22"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "supabase_service_role_api_key_121t",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_15wv",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_121t",
+      "secret": true
+    }
+  ]
+}
